@@ -1,14 +1,14 @@
 # Wera Admin
 
-[![CI](https://github.com/jessechumo/wera-admin/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jessechumo/wera-admin/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/jessechumo/wera-admin/badges/coverage.json)](https://github.com/jessechumo/wera-admin/actions/workflows/ci.yml)
+[![CI](https://github.com/wera-jobs/wera-admin/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wera-jobs/wera-admin/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wera-jobs/wera-admin/badges/coverage.json)](https://github.com/wera-jobs/wera-admin/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](tsconfig.json)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org)
-[![License](https://img.shields.io/github/license/jessechumo/wera-admin)](LICENSE)
+[![License](https://img.shields.io/github/license/wera-jobs/wera-admin)](LICENSE)
 
-The admin console for a [Wera](https://github.com/jessechumo/Wera) server. Admins sign in with their usual Wera account; everyone else is turned away. It talks only to the API's `/api/admin/*` routes, which check for an admin's browser session on every request and record every change in an audit log.
+The admin console for a [Wera](https://github.com/wera-jobs/Wera) server. Admins sign in with their usual Wera account; everyone else is turned away. It talks only to the API's `/api/admin/*` routes, which check for an admin's browser session on every request and record every change in an audit log.
 
-The user dashboard ([Wera-Frontend](https://github.com/jessechumo/Wera-Frontend)) has no admin features of its own.
+The user dashboard ([Wera-Frontend](https://github.com/wera-jobs/Wera-Frontend)) has no admin features of its own.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-dark.svg">
@@ -63,4 +63,4 @@ React 19, TypeScript 6 (strict), Vite 8, Tailwind CSS 4, TanStack Query, React R
 
 ## Commits and releases
 
-Every commit is a [Conventional Commit](https://www.conventionalcommits.org) (`feat:`, `fix:`, `chore:`…), checked on pull requests. Work lands on `dev`; release-please keeps a release PR open on `main`, and merging it tags `wera-admin-vX.Y.Z` and publishes `ghcr.io/jessechumo/wera-admin`.
+Every commit is a [Conventional Commit](https://www.conventionalcommits.org) (`feat:`, `fix:`, `chore:`…), checked on pull requests. Work lands on `dev`; release-please keeps a release PR open on `main`, and merging it tags `wera-admin-vX.Y.Z` and publishes `ghcr.io/wera-jobs/wera-admin`.
