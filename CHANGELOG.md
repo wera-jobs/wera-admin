@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.6](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.2.5...wera-admin-v0.2.6) (2026-11-03)
+
+
+### Bug Fixes
+
+* **deps:** bump the production group with 3 updates ([#34](https://github.com/wera-jobs/wera-admin/issues/34)) ([5bca878](https://github.com/wera-jobs/wera-admin/commit/5bca878a9254e55bc114d9bced5a59f681b52624))
+
+
+### Documentation
+
+* **contributing:** say pull requests go to dev first ([#33](https://github.com/wera-jobs/wera-admin/issues/33)) ([790e6f8](https://github.com/wera-jobs/wera-admin/commit/790e6f89cf7ca46191082e4e815da0caadb0e44a))
+* **readme:** point links at the wera-jobs org ([a8fe91b](https://github.com/wera-jobs/wera-admin/commit/a8fe91b70eb497163654a7c6142a2226a1ceac55))
+
 ## [0.2.5](https://github.com/jessechumo/wera-admin/compare/wera-admin-v0.2.4...wera-admin-v0.2.5) (2026-10-31)
 
 
