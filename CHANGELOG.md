@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.2.6](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.2.5...wera-admin-v0.2.6) (2026-11-03)
+
+
+### Bug Fixes
+
+* **deps:** bump the production group with 3 updates ([#34](https://github.com/wera-jobs/wera-admin/issues/34)) ([5bca878](https://github.com/wera-jobs/wera-admin/commit/5bca878a9254e55bc114d9bced5a59f681b52624))
+
+
+### Documentation
+
+* **contributing:** say pull requests go to dev first ([#33](https://github.com/wera-jobs/wera-admin/issues/33)) ([790e6f8](https://github.com/wera-jobs/wera-admin/commit/790e6f89cf7ca46191082e4e815da0caadb0e44a))
+* **readme:** point links at the wera-jobs org ([a8fe91b](https://github.com/wera-jobs/wera-admin/commit/a8fe91b70eb497163654a7c6142a2226a1ceac55))
+
+## [0.2.5](https://github.com/jessechumo/wera-admin/compare/wera-admin-v0.2.4...wera-admin-v0.2.5) (2026-10-31)
+
+
+### Bug Fixes
+
+* **admin:** release staying open through a failed check ([473f4cc](https://github.com/jessechumo/wera-admin/commit/473f4cccfa1c07251d5de03963e47e00b0bd79fc))
+* **admin:** stay open through a failed check and recover by itself ([2630c10](https://github.com/jessechumo/wera-admin/commit/2630c108288a7253b4f4c545a428ef3f81aa2dd7))
+
+
+### Documentation
+
+* **readme:** correct the stack, the networks nginx allows and the tags ([1efe26c](https://github.com/jessechumo/wera-admin/commit/1efe26ca09ba5e32cc475bfa9f63664909129aac))
+
+## [0.2.4](https://github.com/jessechumo/wera-admin/compare/wera-admin-v0.2.3...wera-admin-v0.2.4) (2026-10-28)
+
+
+### Bug Fixes
+
+* **deps:** bump the production group with 2 updates ([#27](https://github.com/jessechumo/wera-admin/issues/27)) ([efa95ce](https://github.com/jessechumo/wera-admin/commit/efa95ce68e8cc61141adacf25de19b13a0b172e6))
+
+## [0.2.3](https://github.com/jessechumo/wera-admin/compare/wera-admin-v0.2.2...wera-admin-v0.2.3) (2026-10-24)
+
+
+### Bug Fixes
+
+* **api:** say the server is not answering instead of showing a proxy's error page ([#24](https://github.com/jessechumo/wera-admin/issues/24)) ([02702df](https://github.com/jessechumo/wera-admin/commit/02702dfdbf8c8e92fc6dc69e8c59d63bc9b554fd))
+* **deps:** bump the production group with 2 updates ([#18](https://github.com/jessechumo/wera-admin/issues/18)) ([9b49c6c](https://github.com/jessechumo/wera-admin/commit/9b49c6c695da7a1f3c7f45fb0d1e750b727e991e))
+
 ## [0.2.2](https://github.com/jessechumo/wera-admin/compare/wera-admin-v0.2.1...wera-admin-v0.2.2) (2026-10-22)
 
 
