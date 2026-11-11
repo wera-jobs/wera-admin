@@ -106,7 +106,7 @@ export default function TrafficPage() {
               sub={t ? `${compact(t.pageviews)} page views, ${compact(t.sessions)} visits` : undefined} />
             <StatTile label="Bounce rate" value={pct(t?.bounce_rate, 0)} sub={t ? `${t.views_per_visit.toFixed(1)} pages a visit` : undefined} />
             <StatTile label="Time on site" value={duration(t?.avg_visit_seconds)} sub="average visit, page in view" />
-            <StatTile label={`Signups, ${days} days`} value={t?.signups ?? 0} sub={t ? `${pct(signupRate)} of visitors` : undefined}
+            <StatTile label={`Signups, ${days} days`} value={t?.signups ?? 0} sub={t && signupRate <= 100 ? `${pct(signupRate)} of visitors` : 'some from visits not counted'}
               bars={perDay.map((d) => ({ day: d.day, count: d.signups }))} />
             <StatTile label="API requests today" value={reqToday?.requests ?? 0}
               sub={reqToday ? `${Math.round(reqToday.avg_ms)} ms on average` : undefined} />
