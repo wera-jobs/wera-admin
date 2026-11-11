@@ -10,7 +10,7 @@ import {
   YAxis,
 } from 'recharts';
 import { compact, money } from '../lib/format';
-import type { DayCount, UsageDay } from '../api/types';
+import type { DayCount, RequestDay, TrafficDay, UsageDay } from '../api/types';
 
 const AXIS_TICK = {
   fill: 'var(--color-faint)',
@@ -187,6 +187,43 @@ export function CostChart({ data }: { data: UsageDay[] }) {
             activeDot={{ r: 4, strokeWidth: 0 }}
           />
         </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+/** Visitors and page views per day. */
+export function TrafficChart({ data }: { data: TrafficDay[] }) {
+  return (
+    <div className="h-56 w-full">
+      <ResponsiveContainer>
+        <AreaChart data={data} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
+          <CartesianGrid stroke="var(--color-grid)" vertical={false} />
+          <XAxis dataKey="day" tickFormatter={shortDay} tick={AXIS_TICK} tickLine={false} axisLine={false} minTickGap={16} />
+          <YAxis tick={AXIS_TICK} tickLine={false} axisLine={false} width={56} tickFormatter={(v: number) => compact(v)} allowDecimals={false} />
+          <Tooltip cursor={{ stroke: 'var(--color-border)' }} content={<ChartTip format={(v) => compact(v)} />} />
+          <Area type="monotone" dataKey="pageviews" name="page views" stroke="var(--color-accent-2)" fill="var(--color-accent-2)" fillOpacity={0.12} strokeWidth={2} />
+          <Area type="monotone" dataKey="visitors" name="visitors" stroke="var(--color-accent)" fill="var(--color-accent)" fillOpacity={0.18} strokeWidth={2} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+/** API requests per day, server errors on top. */
+export function RequestsChart({ data }: { data: RequestDay[] }) {
+  const rows = data.map((d) => ({ day: d.day, ok: d.requests - d.errors_5xx, errors: d.errors_5xx }));
+  return (
+    <div className="h-56 w-full">
+      <ResponsiveContainer>
+        <BarChart data={rows} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
+          <CartesianGrid stroke="var(--color-grid)" vertical={false} />
+          <XAxis dataKey="day" tickFormatter={shortDay} tick={AXIS_TICK} tickLine={false} axisLine={false} minTickGap={16} />
+          <YAxis tick={AXIS_TICK} tickLine={false} axisLine={false} width={56} tickFormatter={(v: number) => compact(v)} allowDecimals={false} />
+          <Tooltip cursor={{ fill: 'var(--color-cursor)' }} content={<ChartTip format={(v) => compact(v)} />} />
+          <Bar dataKey="ok" name="answered" stackId="r" fill="var(--color-accent-2)" maxBarSize={28} />
+          <Bar dataKey="errors" name="server errors" stackId="r" fill="var(--color-bad)" radius={[3, 3, 0, 0]} maxBarSize={28} />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

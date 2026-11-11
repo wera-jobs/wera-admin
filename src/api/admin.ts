@@ -1,7 +1,7 @@
 import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import type {
-  AdminUser, AuditEntry, Company, ContentItem, ContentKind, ContentStatus, EmailOverview, OverviewResponse, Run, Usage, UserChange,
+  AdminUser, AuditEntry, Company, ContentItem, ContentKind, ContentStatus, EmailOverview, OverviewResponse, Run, Traffic, Usage, UserChange,
 } from './types';
 
 // Every admin read refreshes on its own: the console is often left open.
@@ -84,6 +84,18 @@ export function useTriggerRun() {
 
 export function useUsage() {
   return useQuery({ queryKey: ['usage'], queryFn: () => api<Usage>('/api/admin/usage'), ...LIVE });
+}
+
+/** The browser's time zone, so "today" on the Traffic page is the admin's day. */
+const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+export function useTraffic(days: number) {
+  return useQuery({
+    queryKey: ['traffic', days],
+    queryFn: () => api<Traffic>(`/api/admin/traffic?days=${days}&tz=${encodeURIComponent(TZ)}`),
+    placeholderData: keepPreviousData,
+    ...LIVE,
+  });
 }
 
 export function useCompanies() {
