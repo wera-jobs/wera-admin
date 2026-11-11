@@ -1,4 +1,4 @@
-import { Activity, Building2, Gauge, History, Mail, MessageSquareWarning, Users, Wallet, type LucideIcon } from 'lucide-react';
+import { Activity, BarChart3, Building2, Gauge, History, Mail, MessageSquareWarning, Users, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface NavItem {
   to: string;
@@ -8,6 +8,7 @@ export interface NavItem {
 
 export const NAV: NavItem[] = [
   { to: '/', label: 'Overview', icon: Gauge },
+  { to: '/traffic', label: 'Traffic', icon: BarChart3 },
   { to: '/users', label: 'Users', icon: Users },
   { to: '/runs', label: 'Runs', icon: Activity },
   { to: '/usage', label: 'AI usage', icon: Wallet },

@@ -177,3 +177,65 @@ export interface EmailOverview {
   templates: string[];
   outbox: OutboxEmail[];
 }
+
+/** GET /api/admin/traffic: site visits (cookieless, see the server's docs/analytics.md) and API requests. */
+export interface TrafficDay {
+  day: string;
+  visitors: number;
+  pageviews: number;
+  sessions: number;
+  bounces: number;
+  signups: number;
+  avg_visit_seconds: number;
+}
+
+export interface TrafficRow {
+  label: string;
+  visitors: number;
+  pageviews?: number;
+  sessions?: number;
+  bounce_rate?: number;
+  avg_engaged_seconds?: number;
+}
+
+export interface RequestDay {
+  day: string;
+  requests: number;
+  errors_4xx: number;
+  errors_5xx: number;
+  avg_ms: number;
+}
+
+export interface RouteRow {
+  route: string;
+  method: string;
+  requests: number;
+  errors_5xx: number;
+  avg_ms: number;
+}
+
+export interface Traffic {
+  days: number;
+  time_zone: string;
+  totals: {
+    visitors: number;
+    pageviews: number;
+    sessions: number;
+    bounce_rate: number;
+    avg_visit_seconds: number;
+    views_per_visit: number;
+    signups: number;
+    live_visitors: number;
+  };
+  per_day: TrafficDay[];
+  pages: TrafficRow[] | null;
+  landing: TrafficRow[] | null;
+  referrers: TrafficRow[] | null;
+  campaigns: TrafficRow[] | null;
+  devices: TrafficRow[] | null;
+  browsers: TrafficRow[] | null;
+  systems: TrafficRow[] | null;
+  countries: TrafficRow[] | null;
+  requests: RequestDay[] | null;
+  top_routes: RouteRow[] | null;
+}

@@ -104,3 +104,33 @@ describe('AuditPage', () => {
     expect(screen.queryByRole('button', { name: 'Older' })).toBeNull();
   });
 });
+
+describe('TrafficPage', () => {
+  const day = (d: string, visitors: number, pageviews: number, signups = 0) => ({ day: d, visitors, pageviews, sessions: visitors, bounces: 1, signups, avg_visit_seconds: 42 });
+  const traffic = (days: number) => ({
+    days, time_zone: 'UTC',
+    totals: { visitors: 15, pageviews: 40, sessions: 18, bounce_rate: 38.9, avg_visit_seconds: 125, views_per_visit: 2.2, signups: 2, live_visitors: 3 },
+    per_day: [day('2026-11-10', 5, 12), day('2026-11-11', 10, 28, 2)],
+    pages: [{ label: '/', visitors: 12, pageviews: 20, avg_engaged_seconds: 30 }, { label: '/jobs/:id', visitors: 4, pageviews: 9 }],
+    landing: [{ label: '/', visitors: 12, sessions: 14, bounce_rate: 42.9, avg_engaged_seconds: 31 }],
+    referrers: [{ label: 'linkedin.com', visitors: 6, sessions: 7, bounce_rate: 20, avg_engaged_seconds: 80 }],
+    campaigns: null, devices: [{ label: 'Mobile', visitors: 9 }], browsers: null, systems: null, countries: [{ label: 'KE', visitors: 5 }],
+    requests: [{ day: '2026-11-10', requests: 900, errors_4xx: 10, errors_5xx: 0, avg_ms: 40 }, { day: '2026-11-11', requests: 1200, errors_4xx: 12, errors_5xx: 3, avg_ms: 55 }],
+    top_routes: [{ route: '/api/jobs/{id}', method: 'GET', requests: 800, errors_5xx: 3, avg_ms: 70 }],
+  });
+
+  it("shows today's visitors against yesterday, where they came from, and the API's errors", async () => {
+    const asked: string[] = [];
+    stubApi({ 'GET /api/admin/traffic': (_init, url) => (asked.push(String(url)), traffic(30)) });
+    renderAdmin('/traffic');
+    expect(await screen.findByText('+5 vs yesterday')).toBeInTheDocument();
+    expect(screen.getByText('3 on the site now')).toBeInTheDocument();
+    expect(screen.getByText('39%')).toBeInTheDocument();
+    expect(screen.getByText('2m 05s')).toBeInTheDocument();
+    expect(screen.getByText('linkedin.com')).toBeInTheDocument();
+    expect(screen.getByText('/api/jobs/{id}')).toBeInTheDocument();
+    expect(screen.getByText('0.14% of 2.1k requests')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: '7d' }));
+    await waitFor(() => expect(asked.some((u) => u.includes('days=7'))).toBe(true));
+  });
+});

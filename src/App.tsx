@@ -12,6 +12,7 @@ import UsersPage from './pages/UsersPage';
 // Charts (recharts) load with the pages that draw them.
 const RunsPage = lazyPage(() => import('./pages/RunsPage'));
 const UsagePage = lazyPage(() => import('./pages/UsagePage'));
+const TrafficPage = lazyPage(() => import('./pages/TrafficPage'));
 const CompaniesPage = lazyPage(() => import('./pages/CompaniesPage'));
 const ContentPage = lazyPage(() => import('./pages/ContentPage'));
 const EmailPage = lazyPage(() => import('./pages/EmailPage'));
@@ -26,6 +27,7 @@ export function AdminRoutes() {
           <Route index element={<OverviewPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="runs" element={<RunsPage />} />
+          <Route path="traffic" element={<TrafficPage />} />
           <Route path="usage" element={<UsagePage />} />
           <Route path="companies" element={<CompaniesPage />} />
           <Route path="content" element={<ContentPage />} />
