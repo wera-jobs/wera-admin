@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.2.6...wera-admin-v0.3.0) (2026-11-11)
+
+
+### Features
+
+* **traffic:** a page for site visitors, bounce rate and API requests ([5ddcb0b](https://github.com/wera-jobs/wera-admin/commit/5ddcb0bac53b199776658f0acb07e3304db8a5ce))
+
+
+### Bug Fixes
+
+* **traffic:** no signup rate past 100% ([78521a6](https://github.com/wera-jobs/wera-admin/commit/78521a622b893480036ad1a1613215985a99f962))
+
 ## [0.2.6](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.2.5...wera-admin-v0.2.6) (2026-11-03)
 
 
