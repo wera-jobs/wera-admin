@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.3.0...wera-admin-v0.3.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* **deps:** bump the production group across 1 directory with 2 updates ([dc1ae73](https://github.com/wera-jobs/wera-admin/commit/dc1ae730f4fcdb43cdbcd31eeb45b2bacd195b46))
+* **deps:** dependency updates from Dependabot ([89d140d](https://github.com/wera-jobs/wera-admin/commit/89d140d0ce3a408f714b0362eaf3bd97d32ea105))
+
 ## [0.3.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.2.6...wera-admin-v0.3.0) (2026-11-11)
 
 
