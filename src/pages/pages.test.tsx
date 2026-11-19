@@ -134,3 +134,17 @@ describe('TrafficPage', () => {
     await waitFor(() => expect(asked.some((u) => u.includes('days=7'))).toBe(true));
   });
 });
+
+describe('ReportsPage', () => {
+  it('lists open reports, opens the details, and marks one resolved', async () => {
+    let set: Record<string, unknown> = {};
+    stubApi({ 'PATCH /api/admin/reports/4': (init) => ((set = jsonBody(init)), undefined) });
+    renderAdmin('/reports');
+    expect(await screen.findByText('The phone box was left empty.')).toBeInTheDocument();
+    expect(screen.getByText('boards.greenhouse.io/acme/jobs/1')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Show details' }));
+    expect(await screen.findByText(/"status": "skipped"/)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Mark resolved' }));
+    await waitFor(() => expect(set).toEqual({ resolved: true }));
+  });
+});

@@ -24,6 +24,8 @@ export interface Overview {
   email_queued: number;
   email_failed_7d: number;
   content_hidden: number;
+  /** Problems people reported from the extension that are not resolved yet. */
+  reports_open?: number;
   last_run_at: string | null;
   last_run_status: RunStatus | null;
 }
@@ -148,6 +150,22 @@ export interface ContentItem {
   author_id: number;
   author: string;
   created_at: string;
+}
+
+/** A "Report a problem" from the extension. `details` comes only with one report. */
+export interface ProblemReport {
+  id: number;
+  user_id: number;
+  user_email: string;
+  user_name: string;
+  created_at: string;
+  source: string;
+  note: string;
+  page: string;
+  version: string;
+  details_size: number;
+  details?: string;
+  resolved_at: string | null;
 }
 
 export interface AuditEntry {

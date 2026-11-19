@@ -1,4 +1,4 @@
-import type { AdminUser, AuditEntry, Company, ContentItem, Me, OverviewResponse, Run, Usage } from '../api/types';
+import type { AdminUser, AuditEntry, Company, ContentItem, Me, OverviewResponse, ProblemReport, Run, Usage } from '../api/types';
 import { mockApi } from './render';
 
 export const me: Me = { id: 1, email: 'jesse@example.com', name: 'Jesse', is_admin: true, created_at: '2026-10-01T00:00:00Z' };
@@ -13,7 +13,7 @@ export const overview = (over: Partial<OverviewResponse['overview']> = {}): Over
   overview: {
     users: 7, users_with_profile: 6, signups_7d: 2, active_7d: 5, admins: 1, companies_enabled: 577, companies_failing: 0,
     jobs_open: 83000, jobs_new_24h: 1200, jobs_added_open: 4, pending_scores: 310, month_spend_usd: 12.5, email_queued: 0,
-    email_failed_7d: 0, content_hidden: 0, last_run_at: '2026-10-14T05:00:00Z', last_run_status: 'ok', ...over,
+    email_failed_7d: 0, content_hidden: 0, reports_open: 0, last_run_at: '2026-10-14T05:00:00Z', last_run_status: 'ok', ...over,
   },
   monthly_cap_usd: 100, email_enabled: false, run_trigger: true,
 });
@@ -32,6 +32,11 @@ export const usage: Usage = {
     { id: 1, email: 'jesse@example.com', name: 'Jesse', monthly_budget_usd: 10, month_spend_usd: 2.3 },
   ],
 };
+
+export const report = (over: Partial<ProblemReport> = {}): ProblemReport => ({
+  id: 4, user_id: 2, user_email: 'ada@example.com', user_name: 'Ada', created_at: '2026-10-14T05:00:00Z', source: 'extension',
+  note: 'The phone box was left empty.', page: 'boards.greenhouse.io/acme/jobs/1', version: '0.16.3', details_size: 52, resolved_at: null, ...over,
+});
 
 export const company = (over: Partial<Company> = {}): Company => ({
   id: 1, name: 'Jump Trading', ats: 'greenhouse', token: 'jump', industry: 'trading', enabled: true,
@@ -64,6 +69,8 @@ export function stubApi(overrides: Record<string, Handler> = {}) {
     'GET /api/admin/companies': () => ({ companies: [company()] }),
     'GET /api/admin/content': () => ({ items: [content()] }),
     'GET /api/admin/audit': () => ({ entries: [audit(3)] }),
+    'GET /api/admin/reports': () => ({ reports: [report()] }),
+    'GET /api/admin/reports/4': () => report({ details: '{"fields":[{"label":"Phone","status":"skipped"}]}' }),
     'GET /api/admin/email': () => ({ config: { enabled: false }, templates: ['verify', 'digest'], outbox: [] }),
     ...overrides,
   });
