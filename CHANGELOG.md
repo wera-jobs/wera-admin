@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.3.1...wera-admin-v0.4.0) (2026-11-19)
+
+
+### Features
+
+* **reports:** read problem reports from the extension ([898d51c](https://github.com/wera-jobs/wera-admin/commit/898d51c2f34cf044f43ef40a0cf448bfe7fd94d6))
+
 ## [0.3.1](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.3.0...wera-admin-v0.3.1) (2026-11-11)
 
 
