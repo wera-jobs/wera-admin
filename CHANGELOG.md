@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.4.0...wera-admin-v0.5.0) (2026-11-19)
+
+
+### Features
+
+* **overview:** warn on every page as AI spend nears the monthly cap ([e3262a7](https://github.com/wera-jobs/wera-admin/commit/e3262a7872f1fd26ec74f238ecdcc0b298578bce)), closes [#54](https://github.com/wera-jobs/wera-admin/issues/54)
+
 ## [0.4.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.3.1...wera-admin-v0.4.0) (2026-11-19)
 
 
