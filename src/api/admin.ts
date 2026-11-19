@@ -1,7 +1,7 @@
 import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import type {
-  AdminUser, AuditEntry, Company, ContentItem, ContentKind, ContentStatus, EmailOverview, OverviewResponse, Run, Traffic, Usage, UserChange,
+  AdminUser, AuditEntry, Company, ContentItem, ProblemReport, ContentKind, ContentStatus, EmailOverview, OverviewResponse, Run, Traffic, Usage, UserChange,
 } from './types';
 
 // Every admin read refreshes on its own: the console is often left open.
@@ -184,5 +184,32 @@ export function useHealth() {
     queryFn: () => api<{ status: string; version: string; commit: string }>('/healthz'),
     refetchInterval: 30_000,
     retry: false,
+  });
+}
+
+/** Problem reports from the extension: the open ones, or all. */
+export function useReports(all: boolean) {
+  return useQuery({
+    queryKey: ['reports', all],
+    queryFn: () => api<{ reports: ProblemReport[] }>(`/api/admin/reports?limit=100${all ? '&all=1' : ''}`),
+    placeholderData: keepPreviousData,
+  });
+}
+
+/** One report with its details, when it is opened. */
+export function useReport(id: number, enabled: boolean) {
+  return useQuery({ queryKey: ['report', id], queryFn: () => api<ProblemReport>(`/api/admin/reports/${id}`), enabled });
+}
+
+export function useResolveReport() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (v: { id: number; resolved: boolean }) =>
+      api<void>(`/api/admin/reports/${v.id}`, { method: 'PATCH', body: JSON.stringify({ resolved: v.resolved }) }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['reports'] });
+      void qc.invalidateQueries({ queryKey: ['overview'] });
+      void qc.invalidateQueries({ queryKey: ['audit'] });
+    },
   });
 }

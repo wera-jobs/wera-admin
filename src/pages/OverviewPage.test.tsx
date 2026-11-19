@@ -14,12 +14,13 @@ describe('OverviewPage', () => {
 
   it('lists what needs attention, with links', async () => {
     stubApi({
-      'GET /api/admin/overview': () => overview({ last_run_status: 'failed', companies_failing: 3, content_hidden: 1, email_failed_7d: 2, month_spend_usd: 95 }),
+      'GET /api/admin/overview': () => overview({ last_run_status: 'failed', companies_failing: 3, content_hidden: 1, reports_open: 2, email_failed_7d: 2, month_spend_usd: 95 }),
     });
     renderAdmin();
     expect(await screen.findByText('The last pipeline run failed')).toBeInTheDocument();
     expect(screen.getByText('3 companies failed their last fetch').closest('a')).toHaveAttribute('href', '/companies');
     expect(screen.getByText('1 post or comment hidden by moderation')).toBeInTheDocument();
+    expect(screen.getByText('2 problem reports from the extension to read').closest('a')).toHaveAttribute('href', '/reports');
     expect(screen.getByText('2 emails failed this week')).toBeInTheDocument();
     expect(screen.getByText('AI spend is at 95% of the monthly cap')).toBeInTheDocument();
   });
