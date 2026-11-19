@@ -7,6 +7,7 @@ import { useLogout, useMe } from '../api/auth';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { Logo } from '../components/Logo';
 import { SkeletonRows } from '../components/States';
+import { SpendBanner } from '../components/SpendBanner';
 import { ThemeToggle } from '../lib/theme';
 import { NAV } from './nav';
 
@@ -99,6 +100,7 @@ export function Shell() {
           <ThemeToggle className="ml-auto" />
         </header>
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:px-6">
+          <SpendBanner />
           <ErrorBoundary resetKey={location.pathname}>
             <Suspense fallback={<SkeletonRows rows={6} />}>
               <Outlet />

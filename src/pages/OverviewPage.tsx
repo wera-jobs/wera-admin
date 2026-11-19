@@ -8,6 +8,7 @@ import { RunStatus } from '../components/RunStatus';
 import { ErrorState, SkeletonRows } from '../components/States';
 import { StatTile } from '../components/StatTile';
 import { money, relTime } from '../lib/format';
+import { spendPercent } from '../lib/spend';
 
 /** The state of the whole service, and what needs an admin's attention. */
 export default function OverviewPage() {
@@ -15,7 +16,7 @@ export default function OverviewPage() {
   if (q.isLoading) return <><PageHeader title="Overview" /><SkeletonRows rows={6} /></>;
   if (!q.data) return <ErrorState message={errorMessage(q.error)} onRetry={() => void q.refetch()} />;
   const { overview: o, monthly_cap_usd: cap, email_enabled: emailOn } = q.data;
-  const spendPct = cap > 0 ? Math.min(100, (o.month_spend_usd / cap) * 100) : 0;
+  const spendPct = spendPercent(o.month_spend_usd, cap);
 
   const attention: { text: string; to: string }[] = [];
   if (o.last_run_status === 'failed') attention.push({ text: 'The last pipeline run failed', to: '/runs' });
@@ -23,7 +24,7 @@ export default function OverviewPage() {
   if (o.content_hidden > 0) attention.push({ text: `${o.content_hidden} post${o.content_hidden === 1 ? '' : 's'} or comment${o.content_hidden === 1 ? '' : 's'} hidden by moderation`, to: '/content' });
   if (o.reports_open) attention.push({ text: `${o.reports_open} problem report${o.reports_open === 1 ? '' : 's'} from the extension to read`, to: '/reports' });
   if (o.email_failed_7d > 0) attention.push({ text: `${o.email_failed_7d} email${o.email_failed_7d === 1 ? '' : 's'} failed this week`, to: '/email' });
-  if (cap > 0 && spendPct >= 80) attention.push({ text: `AI spend is at ${Math.round(spendPct)}% of the monthly cap`, to: '/usage' });
+  // Spend near or at the cap has its own banner on every page (SpendBanner).
 
   return (
     <div className="space-y-5">
