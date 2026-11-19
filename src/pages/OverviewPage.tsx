@@ -21,6 +21,7 @@ export default function OverviewPage() {
   if (o.last_run_status === 'failed') attention.push({ text: 'The last pipeline run failed', to: '/runs' });
   if (o.companies_failing > 0) attention.push({ text: `${o.companies_failing} compan${o.companies_failing === 1 ? 'y' : 'ies'} failed their last fetch`, to: '/companies' });
   if (o.content_hidden > 0) attention.push({ text: `${o.content_hidden} post${o.content_hidden === 1 ? '' : 's'} or comment${o.content_hidden === 1 ? '' : 's'} hidden by moderation`, to: '/content' });
+  if (o.reports_open) attention.push({ text: `${o.reports_open} problem report${o.reports_open === 1 ? '' : 's'} from the extension to read`, to: '/reports' });
   if (o.email_failed_7d > 0) attention.push({ text: `${o.email_failed_7d} email${o.email_failed_7d === 1 ? '' : 's'} failed this week`, to: '/email' });
   if (cap > 0 && spendPct >= 80) attention.push({ text: `AI spend is at ${Math.round(spendPct)}% of the monthly cap`, to: '/usage' });
 
