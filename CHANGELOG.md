@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.1](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.5.0...wera-admin-v0.5.1) (2026-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump lucide-react from 1.70.0 to 1.73.0 in the production group ([3546b69](https://github.com/wera-jobs/wera-admin/commit/3546b69444136912a27b7ccaba5ed8be7be59db1))
+
+
+### Documentation
+
+* **readme:** make README more concise and scannable ([1ceb5da](https://github.com/wera-jobs/wera-admin/commit/1ceb5da55f54c27039dfa90efeb500a55038447a))
+
 ## [0.5.0](https://github.com/wera-jobs/wera-admin/compare/wera-admin-v0.4.0...wera-admin-v0.5.0) (2026-11-19)
 
 
