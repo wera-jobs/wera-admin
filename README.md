@@ -4,7 +4,7 @@
 [![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wera-jobs/wera-admin/badges/coverage.json)](https://github.com/wera-jobs/wera-admin/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](tsconfig.json)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org)
-[![License](https://img.shields.io/github/license/wera-jobs/wera-admin)](LICENSE)
+[![License: proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE)
 
 Private admin console for [Wera](https://github.com/wera-jobs/Wera). Talks only to `/api/admin/*` using an admin browser session, with every change recorded in an audit log. User-facing pages live in [Wera-Frontend](https://github.com/wera-jobs/Wera-Frontend).
 
@@ -52,3 +52,7 @@ Built as `wera-admin` from `../wera/docker-compose.yml` on port `3001`. Nginx re
 React 19, TypeScript 6 (strict), Vite 8, Tailwind CSS 4, TanStack Query, React Router, Recharts, Vitest, Testing Library.
 
 Commits follow [Conventional Commits](https://www.conventionalcommits.org); [release-please](https://github.com/googleapis/release-please) cuts releases and publishes `ghcr.io/wera-jobs/wera-admin`.
+
+## License
+
+Copyright (c) 2026 Wera. All rights reserved. This code is proprietary: it is visible here, but that grants no right to use, copy, modify or distribute it (see [LICENSE](LICENSE)). The Wera name and logo are trademarks of Wera. Third-party packages keep their own licenses, listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); regenerate it with `node scripts/third-party-notices.mjs` after changing dependencies.
