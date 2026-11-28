@@ -18,6 +18,7 @@ const ContentPage = lazyPage(() => import('./pages/ContentPage'));
 const EmailPage = lazyPage(() => import('./pages/EmailPage'));
 const AuditPage = lazyPage(() => import('./pages/AuditPage'));
 const ReportsPage = lazyPage(() => import('./pages/ReportsPage'));
+const QualityPage = lazyPage(() => import('./pages/QualityPage'));
 
 /** The routes, for the app and for tests (which bring their own router). */
 export function AdminRoutes() {
@@ -33,6 +34,7 @@ export function AdminRoutes() {
           <Route path="companies" element={<CompaniesPage />} />
           <Route path="content" element={<ContentPage />} />
           <Route path="reports" element={<ReportsPage />} />
+          <Route path="quality" element={<QualityPage />} />
           <Route path="email" element={<EmailPage />} />
           <Route path="audit" element={<AuditPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

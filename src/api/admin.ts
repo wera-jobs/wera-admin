@@ -213,3 +213,22 @@ export function useResolveReport() {
     },
   });
 }
+
+/** Autofill's record in real use, by applicant system and field purpose ("" is the system's total). */
+export interface QualityRow {
+  system: string;
+  purpose: string;
+  fields: number;
+  filled: number;
+  changed: number;
+  accuracy: number;
+  coverage: number;
+}
+
+export function useAutofillQuality(days: number) {
+  return useQuery({
+    queryKey: ['autofill-quality', days],
+    queryFn: () => api<{ days: number; rows: QualityRow[] }>(`/api/admin/autofill-quality?days=${days}`),
+    placeholderData: keepPreviousData,
+  });
+}

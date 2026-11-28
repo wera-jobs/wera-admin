@@ -72,6 +72,11 @@ export function stubApi(overrides: Record<string, Handler> = {}) {
     'GET /api/admin/reports': () => ({ reports: [report()] }),
     'GET /api/admin/reports/4': () => report({ details: '{"fields":[{"label":"Phone","status":"skipped"}]}' }),
     'GET /api/admin/email': () => ({ config: { enabled: false }, templates: ['verify', 'digest'], outbox: [] }),
+    'GET /api/admin/autofill-quality': () => ({ days: 30, rows: [
+      { system: 'Workday', purpose: 'phone', fields: 10, filled: 10, changed: 4, accuracy: 0.6, coverage: 1 },
+      { system: 'Workday', purpose: '', fields: 40, filled: 30, changed: 4, accuracy: 0.8667, coverage: 0.75 },
+      { system: 'Greenhouse', purpose: '', fields: 20, filled: 20, changed: 0, accuracy: 1, coverage: 1 },
+    ] }),
     ...overrides,
   });
 }

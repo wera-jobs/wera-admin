@@ -147,4 +147,12 @@ describe('ReportsPage', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Mark resolved' }));
     await waitFor(() => expect(set).toEqual({ resolved: true }));
   });
+
+  it('shows autofill quality by system, and the worst fields first', async () => {
+    stubApi();
+    renderAdmin('/quality');
+    expect(await screen.findByText('By applicant system')).toBeInTheDocument();
+    expect(screen.getByText('phone · Workday')).toBeInTheDocument();
+    expect(screen.getByText('60%')).toBeInTheDocument();
+  });
 });
